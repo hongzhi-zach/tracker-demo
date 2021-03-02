@@ -1,5 +1,8 @@
 package com.example.trackerdemo.models;
 
+
+import org.springframework.context.annotation.Bean;
+
 public class DataRow {
     private String state;
     private String country;
@@ -37,4 +40,5 @@ public class DataRow {
     public void setDiffFromPrevDay(int diffFromPrevDay) {
         this.diffFromPrevDay = diffFromPrevDay;
     }
+
 }

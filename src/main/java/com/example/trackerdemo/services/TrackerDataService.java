@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CoronaVirusDataService {
+public class TrackerDataService {
 
     private static String VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 
+    //the list of data being sent back to user if they request during the construction of data fetching
     private List<DataRow> dataRows = new ArrayList<>();
 
     public List<DataRow> getAllRows() {
@@ -45,10 +46,12 @@ public class CoronaVirusDataService {
             DataRow row = new DataRow();
             row.setState(record.get("Province/State"));
             row.setCountry(record.get("Country/Region"));
+            //record returns a collection of string that need to be converted to integers
             int latestTotalCases = Integer.parseInt(record.get(record.size() - 1));
             int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
             row.setLatestTotalCases(latestTotalCases);
             row.setDiffFromPrevDay(latestTotalCases - prevDayCases);
+            row.toString();
             newRows.add(row);
         }
         this.dataRows = newRows;
